@@ -82,6 +82,5 @@ python3 scripts/analyze.py .
 
 ## Author
 
-**Nurmuhammed**
-
+Nurmuhammed
 ````
