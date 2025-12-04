@@ -28,6 +28,7 @@ pipeline {
         stage('Static Analysis') {
             steps {
                 echo 'Running static analysis...'
+                sh 'python3 scripts/analyze.py .' 
             }
         }
     }
