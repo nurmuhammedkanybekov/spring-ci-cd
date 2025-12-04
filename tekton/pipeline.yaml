@@ -1,0 +1,28 @@
+apiVersion: tekton.dev/v1beta1
+kind: Pipeline
+metadata:
+  name: spring-boot-pipeline
+spec:
+  workspaces:
+    - name: shared-workspace
+  tasks:
+    - name: fetch-repository
+      taskRef:
+        name: git-clone
+      workspaces:
+        - name: output
+          workspace: shared-workspace
+      params:
+        - name: url
+          value: "https://github.com/nurmuhammedkanybekov/spring-ci-cd"
+        - name: revision
+          value: "main"
+
+    - name: run-unit-tests
+      taskRef:
+        name: maven-test
+      runAfter:
+        - fetch-repository
+      workspaces:
+        - name: source
+          workspace: shared-workspace

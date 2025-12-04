@@ -1,0 +1,14 @@
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: maven-test
+spec:
+  workspaces:
+    - name: source
+  steps:
+    - name: run-tests
+      image: maven:3.8.5-openjdk-17-slim
+      script: |
+        #!/usr/bin/env bash
+        cd $(workspaces.source.path)
+        mvn test
